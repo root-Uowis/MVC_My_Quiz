@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="jumbotron border border-primary rounded shadow-lg w-50 fixed" style="margin-left:25%;margin-top:15%">
+    <div class="container text-center">
+    {% for categorie in categories %}
+    <div>
+    <h5>
+    <a> {{categorie.name}} </a>
+    </h5>
+    </div>
+    {% endfor %}
+      <button type="button" class="btn btn-primary rounded-pill shadow">Start Here</button>
+    </div>
+  </div>
+{% endblock %}
