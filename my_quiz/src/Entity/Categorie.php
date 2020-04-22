@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * Categorie
@@ -46,6 +47,11 @@ class Categorie
 
         return $this;
     }
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->name);
+    }
+
 
 
 }

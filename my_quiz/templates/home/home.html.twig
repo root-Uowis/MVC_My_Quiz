@@ -1,16 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <div class="jumbotron border border-primary rounded shadow-lg w-50 fixed" style="margin-left:25%;margin-top:15%">
+
+  <h1 class='text-primary' style="margin-left:25%; margin-top:90px;"> Categorie</h1>
+
+  <div class="jumbotron border border-primary rounded shadow-lg w-50 fixed" style="margin-left:25%;margin-top:-10px">
     <div class="container text-center">
+ 
     {% for categorie in categories %}
     <div>
     <h5>
-    <a> {{categorie.name}} </a>
+    <buttton type="button" class='btn btn-primary rounded-pill shadow'> <a class="text-light" href="{{ path('show', {id: categorie.id, slug: categorie.name})}}">{{ categorie.name}}</a> </buttton>
     </h5>
     </div>
     {% endfor %}
-      <button type="button" class="btn btn-primary rounded-pill shadow">Start Here</button>
     </div>
   </div>
 {% endblock %}

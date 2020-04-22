@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\CategorieRepository;
+use App\Entity\Categorie;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class HomeController
+class HomeController extends AbstractController
 {
     /**
      * @var Environment
@@ -17,9 +20,22 @@ class HomeController
         $this->twig = $twig;
     }
 
-    public function index()
-    {
+    /**
+     * @var Environment
+     * @var CategorieRepository $repository
+     * @return Response
+     */
+    
 
-        return new Response($this->twig->render('home/home.html.twig'));
+    public function index(CategorieRepository $repository): Response
+    {
+        $categorie = $this->getDoctrine()
+        ->getRepository(Categorie::class)
+        ->findAll()
+        ;
+        return $this->render('home/home.html.twig',
+    [
+        'categories' => $categorie
+    ]);
     }
 }

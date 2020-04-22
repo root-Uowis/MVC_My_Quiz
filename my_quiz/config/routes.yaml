@@ -9,3 +9,7 @@ home:
 categorie:
   path: /quiz/categorie
   controller: App\Controller\CategorieController::index
+  
+# show:
+#   path: /home/show
+#   controller: App\Controller\CategorieController::show
