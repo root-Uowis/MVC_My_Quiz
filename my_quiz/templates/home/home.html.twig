@@ -6,14 +6,15 @@
 
   <div class="jumbotron border border-primary rounded shadow-lg w-50 fixed" style="margin-left:25%;margin-top:-10px">
     <div class="container text-center">
- 
+
     {% for categorie in categories %}
     <div>
     <h5>
-    <buttton type="button" class='btn btn-primary rounded-pill shadow'> <a class="text-light" href="{{ path('show', {id: categorie.id, slug: categorie.name})}}">{{ categorie.name}}</a> </buttton>
+    <buttton type="button" class='btn btn-primary rounded-pill shadow'> <a class="text-light" href="{{ path('show', {id: categorie.id, idcategorie: questions.idCategorie, slug: categorie.name})}}">{{ categorie.name}}</a> </buttton>
     </h5>
     </div>
     {% endfor %}
+
     </div>
   </div>
 {% endblock %}

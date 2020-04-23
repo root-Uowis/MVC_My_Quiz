@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-  {% for categorie in categories %}
-    {{ categorie.name }}
-  {% endfor %}
+
 {% endblock %}
 {% block body %}
-
+  {# {% for question in questions %} #}
+  <h2> Question {{questions.id}}/10 </h2>
+  <div class='card-body mt-5'>
+   <h3 class='card-title'> 
+    {{ questions.question }}
+  </h3>
+  </div>
+  {# {% endfor %} #}
 {% endblock %}

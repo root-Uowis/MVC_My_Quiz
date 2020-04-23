@@ -10,7 +10,7 @@ use Cocur\Slugify\Slugify;
  *
  * @ORM\Table(name="categorie")
  * @ORM\Entity
- *  * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
 
  */
 class Categorie

@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+
 
 /**
  * Question
  *
  * @ORM\Table(name="question")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
+
  */
 class Question
 {
@@ -62,6 +66,11 @@ class Question
         $this->question = $question;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->name);
     }
 
 

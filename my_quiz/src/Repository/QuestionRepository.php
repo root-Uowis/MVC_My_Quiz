@@ -2,37 +2,36 @@
 
 namespace App\Repository;
 
-use App\Entity\Categorie;
+use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Categorie[] find($id, $lockMode = null, $lockVersion = null)
- * @method Categorie|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categorie[]    findAll()
- * @method Categorie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Question[] find($id, $lockMode = null, $lockVersion = null)
+ * @method Question|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Question[]    findAll()
+ * @method Question[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategorieRepository extends ServiceEntityRepository
+class QuestionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categorie::class);
+        parent::__construct($registry, Question::class);
     }
 
-    public function FindOneByOne($value)
+    public function FindIdCategorie($id)
     {
         return $this->createQueryBuilder('t')
-        ->andWhere('t.name = :val')
-        ->setParameter('val', $value)
-        ->orderBy('t.id', 'ASC')
-        ->setMaxResults(01)
+        ->andWhere('t.idCategorie = :val')
+        ->setParameter('val', $id)
+        ->orderBy('t.idCategorie', 'ASC')
+        ->setMaxResults(10)
         ->getQuery()
-        ->getResult()
-    ;
+        ->getResult();
     }
 
     // /**
-    //  * @return Categorie[] Returns an array of Categorie objects
+    //  * @return Question[] Returns an array of Question objects
     //  */
     /*
     public function findByExampleField($value)
@@ -49,7 +48,7 @@ class CategorieRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Categorie
+    public function findOneBySomeField($value): ?Question
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

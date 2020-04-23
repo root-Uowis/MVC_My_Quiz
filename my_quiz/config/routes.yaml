@@ -7,9 +7,6 @@ home:
   controller: App\Controller\HomeController::index
 
 categorie:
-  path: /quiz/categorie
-  controller: App\Controller\CategorieController::index
+  path: /home/categorie
+  controller: App\Controller\QuizController::index
   
-# show:
-#   path: /home/show
-#   controller: App\Controller\CategorieController::show
