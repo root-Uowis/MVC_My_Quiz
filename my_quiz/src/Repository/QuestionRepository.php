@@ -19,15 +19,23 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    public function FindIdCategorie($id)
+    public function FindIdCategorie($idcategorie,$idquestion)
     {
         return $this->createQueryBuilder('t')
-        ->andWhere('t.idCategorie = :val')
-        ->setParameter('val', $id)
-        ->orderBy('t.idCategorie', 'ASC')
-        ->setMaxResults(10)
-        ->getQuery()
-        ->getResult();
+            ->where('t.idCategorie = :value')
+            ->setParameter('value', $idcategorie)
+            ->andWhere('t.id = :val')
+            ->setParameter('val', $idquestion)
+            ->getQuery()
+            ->getResult();
+    }
+    public function FindAllId()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

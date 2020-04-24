@@ -2,11 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-home:
-  path: /home
-  controller: App\Controller\HomeController::index
-
 categorie:
-  path: /home/categorie
+  path: /home
   controller: App\Controller\QuizController::index
   

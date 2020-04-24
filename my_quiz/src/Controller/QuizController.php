@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Repository\CategorieRepository;
 use App\Entity\Categorie;
 use App\Entity\Question;
+use App\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -22,32 +23,71 @@ class QuizController extends AbstractController
     {
         $categorie = $this->getDoctrine()
             ->getRepository(Categorie::class)
-            ->findAll();
+            ->FindOneByOne();
             $question = $this->getDoctrine()
-                ->getRepository(Question::class)
-                ->find(2);
-            dump($categorie);
-            dump($question);
+            ->getRepository(Question::class)
+            ->FindAllId();
 
-        
+        dump($categorie);
+
         return $this->render('home/home.html.twig', [
             'categories' => $categorie,
             'questions' => $question
         ]);
     }
     /**
-     * @Route("/home/show/{slug}/{idcategorie}/{id}", name="show")
+     * @Route("/home/{idcategorie}/{id}", name="show")
      * @return Response
      */
-    public function show($id): Response
+    public function show($idcategorie,$id): Response
     {
+
+        $categorie = $this->getDoctrine()
+        ->getRepository(Categorie::class)
+        ->FindOneByOne();
+      
         $question = $this->getDoctrine()
             ->getRepository(Question::class)
-            ->Find($id);
+            ->FindIdCategorie($idcategorie,$id);
 
+        $reponse = $this->getDoctrine()
+            ->getRepository(Reponse::class)
+            ->findByQuestion($id);
+
+        dump($reponse);
         dump($question);
+      
         return $this->render('home/show.html.twig', [
-            'questions' => $question
+            'categories' => $categorie,
+            'questions' => $question,
+            'reponses' => $reponse
         ]);
     }
+    /**
+     * @Route("/home/{idcategorie}/{id}/verify", name="next")
+     * @return Response
+     */
+    public function verify($idcategorie,$id)
+    {
+        $categorie = $this->getDoctrine()
+        ->getRepository(Categorie::class)
+        ->FindOneByOne();
+
+        $question = $this->getDoctrine()
+        ->getRepository(Question::class)
+        ->FindIdCategorie($idcategorie,$id);
+
+    $reponse = $this->getDoctrine()
+        ->getRepository(Reponse::class)
+        ->findByQuestion($id);
+
+    dump($reponse);
+    dump($question);
+  
+    return $this->render('home/show.html.twig', [
+        'categories' => $categorie,
+        'questions' => $question,
+        'reponses' => $reponse
+    ]);
+}
 }

@@ -2,35 +2,37 @@
 
 namespace App\Repository;
 
-use App\Entity\Categorie;
+use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Categorie[] find($id, $lockMode = null, $lockVersion = null)
- * @method Categorie|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categorie[]    findAll()
- * @method Categorie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reponse[] find($id, $lockMode = null, $lockVersion = null)
+ * @method Reponse|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Reponse[]    findAll()
+ * @method Reponse[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategorieRepository extends ServiceEntityRepository
+class ReponseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categorie::class);
+        parent::__construct($registry, Reponse::class);
     }
 
-    public function FindOneByOne()
+    public function findByQuestion($idquestion)
     {
         return $this->createQueryBuilder('t')
+        ->andWhere('t.idQuestion = :val')
+        ->setParameter('val', $idquestion)
         ->orderBy('t.id', 'ASC')
-        ->setMaxResults(11)
+        ->setMaxResults(3)
         ->getQuery()
-        ->getResult();
-
+        ->getResult()
+    ;
     }
 
     // /**
-    //  * @return Categorie[] Returns an array of Categorie objects
+    //  * @return Reponse[] Returns an array of Reponse objects
     //  */
     /*
     public function findByExampleField($value)
@@ -47,7 +49,7 @@ class CategorieRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Categorie
+    public function findOneBySomeField($value): ?Reponse
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

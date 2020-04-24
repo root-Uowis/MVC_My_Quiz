@@ -27,15 +27,8 @@ class HomeController extends AbstractController
      */
     
 
-    public function index(CategorieRepository $repository): Response
+    public function index(): Response
     {
-        $categorie = $this->getDoctrine()
-        ->getRepository(Categorie::class)
-        ->findAll()
-        ;
-        return $this->render('home/home.html.twig',
-    [
-        'categories' => $categorie
-    ]);
+       echo 'cc';
     }
 }
