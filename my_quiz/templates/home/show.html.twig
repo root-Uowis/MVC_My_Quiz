@@ -5,20 +5,24 @@
 {% block body %}
   {% for question in questions %}
   <br>
+  
   {# <h2 class="mt-5 ml-5"> Question {{question.id}}/ </h2> #}
-  <div class='card-body' style='margin-top:7%'>
+  <div class='card-body' style='margin-top:2%'>
    <h3 class='card-title ml-5'> 
     {{ question.question }}
-      {% endfor %}
     <br>
-      {% for reponse in reponses%}
+    {% for reponse in reponses%}
     <div class="jumbotron">
-    <button class='btn btn-outline-primary w-50' style='margin-left:25%' type='submit'>{{reponse.reponse}}</button>
+    {% set choice = reponse.reponseExpected %}
+     <button name='reponses' class='btn btn-outline-primary w-50 {% set choice2 = choice %}' style='margin-left:25%' type='submit'>{{reponse.reponse}}</button>
     </div>
+    {% if choice2 == 1 %}
+    salut
+ {% endif %}
   {% endfor %}
-  {% for categorie in categories %}
-      <button class='btn btn-primary rounded-pill' style='margin-left:80%' type='submit' href="{{ path({idcategorie: categorie.id, id: question.id})}}">Suivant</button>
+    <button class='btn btn-primary rounded-pill' style='margin-left:80%' > Suivant</button>
 {% endfor %}
+ 
   </h3>
   </div>
 {% endblock %}

@@ -64,7 +64,7 @@ class QuizController extends AbstractController
         ]);
     }
     /**
-     * @Route("/home/{idcategorie}/{id}/verify", name="next")
+     * @Route("/home/{idcategorie}/{id}/verify", name="text")
      * @return Response
      */
     public function verify($idcategorie,$id)
