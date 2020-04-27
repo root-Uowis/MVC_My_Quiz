@@ -6,3 +6,7 @@ categorie:
   path: /home
   controller: App\Controller\QuizController::index
   
+active:
+  path: /active
+  controller: App\Controller\SecurityController::active
+  

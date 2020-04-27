@@ -64,10 +64,10 @@ class QuizController extends AbstractController
         ]);
     }
     /**
-     * @Route("/home/{idcategorie}/{id}/verify", name="text")
+     * @Route("/home/{idcategorie}/{id}/{idexpected}/verify", name="verify")
      * @return Response
      */
-    public function verify($idcategorie,$id)
+    public function verify($idcategorie,$id,$idexpected)
     {
         $categorie = $this->getDoctrine()
         ->getRepository(Categorie::class)

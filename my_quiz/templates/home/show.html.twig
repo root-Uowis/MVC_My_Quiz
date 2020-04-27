@@ -16,9 +16,9 @@
     {% set choice = reponse.reponseExpected %}
      <button name='reponses' class='btn btn-outline-primary w-50 {% set choice2 = choice %}' style='margin-left:25%' type='submit'>{{reponse.reponse}}</button>
     </div>
-    {% if choice2 == 1 %}
+    {# {% if choice2 == true %}
     salut
- {% endif %}
+ {% endif %} #}
   {% endfor %}
     <button class='btn btn-primary rounded-pill' style='margin-left:80%' > Suivant</button>
 {% endfor %}
@@ -26,3 +26,5 @@
   </h3>
   </div>
 {% endblock %}
+
+{# path('verify', {idexpected: choice, idcategorie: categorie.id, id: question.id}) #}
