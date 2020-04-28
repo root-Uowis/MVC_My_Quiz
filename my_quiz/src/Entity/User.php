@@ -37,6 +37,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $token;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +101,16 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getToken(): int
+    {
+        return $this->token;
+    }
+
+    public function setToken(int $token)
+    {
+        return $this->token = $token;
     }
 
     /**

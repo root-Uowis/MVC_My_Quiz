@@ -20,16 +20,16 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $key = rand("1", "100000");
+            $user->setToken($key);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
                     $form->get('Password')->getData()
                 )
             );
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

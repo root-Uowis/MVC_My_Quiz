@@ -3,14 +3,14 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="container text-center">
+<div class="container text-center jumbotron border border-primary mt-4">
     <h1>Register</h1>
         <br>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         <br>
-       <div style="margin-left:-6%"> {{ form_row(registrationForm.Password) }}</div>
+       <div style="margin-left:-6%" > {{ form_row(registrationForm.Password) }}</div>
         <br>        
         <button class="btn btn-primary">Register</button>
     {{ form_end(registrationForm) }}
