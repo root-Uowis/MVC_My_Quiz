@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Twig\Environment;
 
 class SecurityController extends AbstractController
 {
@@ -23,7 +26,10 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     /**
@@ -31,11 +37,38 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new \LogicException(
+            'This method can be blank - it will be intercepted by the logout key on your firewall.'
+        );
     }
 
-    public function active ()
+    /**
+     * @return Response
+     */
+    public function active(Request $request)
     {
-        
+        $email = $request->get('email');
+        $token = $request->get('token');
+        if (isset($email) && isset($token)) {
+            
+            $ebdd = $this->getDoctrine()
+                ->getManager()
+                ->getRepository(User::class)
+                ->FindByToken($token);
+
+            $emailbdd = $ebdd[0];
+            $emailbddd = $emailbdd['email'];
+            $tokenbdd = $ebdd[0]['token'];
+            if ($email == $emailbddd && $token == $tokenbdd) {
+                $reset = $this->getDoctrine()
+                    ->getRepository(User::class)
+                    ->UpdateToken();
+            } else {
+                echo 'error';
+            }
+        } else {
+            echo '<div class="alert alert-primary text-center" role="alert">ERROR</div>';
+        }
+        return $this->render('registration/active.html.twig');
     }
 }

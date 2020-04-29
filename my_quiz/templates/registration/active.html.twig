@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class='container text-center jumbotron border border-primary mt-4'>
+  <form method="post">
+
+    <label for="inputEmail">
+        Email
+      </label>
+ <input type="email"
+        name="email"
+        id="inputEmail"
+        class="form-control w-50"
+        style="margin-left:25%"
+        required
+        autofocus />
+        <label for="inputToken">
+        <br>
+        Token
+      </label>
+          <input type="numero"
+        name="token"
+        id="inputToken"
+        class="form-control w-50"
+        style="margin-left:25%"
+        required />
+                <br>
+
+    <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %} 
