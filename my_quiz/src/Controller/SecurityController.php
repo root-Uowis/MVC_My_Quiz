@@ -59,16 +59,17 @@ class SecurityController extends AbstractController
             $emailbdd = $ebdd[0];
             $emailbddd = $emailbdd['email'];
             $tokenbdd = $ebdd[0]['token'];
+
             if ($email == $emailbddd && $token == $tokenbdd) {
                 $reset = $this->getDoctrine()
                     ->getRepository(User::class)
                     ->UpdateToken();
+                
+                return $this->redirectToRoute('app_login');
             } else {
-                echo 'error';
+                echo '<div class="alert alert-primary text-center" role="alert">ERROR</div>';
             }
-        } else {
-            echo '<div class="alert alert-primary text-center" role="alert">ERROR</div>';
-        }
+        } 
         return $this->render('registration/active.html.twig');
     }
 }

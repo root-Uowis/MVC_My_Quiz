@@ -38,6 +38,7 @@ class RegistrationController extends AbstractController
             $notification->sendmail($user,$key);
             
             return $this->redirectToRoute('active');
+
         }
 
         return $this->render('registration/register.html.twig', [
